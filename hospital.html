@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>응급 병원 찾기</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <link rel="stylesheet" href="hospital.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <h1>🏥 응급 병원 찾기</h1>
+            <p>내 위치에서 가장 가까운 입원 가능 병원을 찾아보세요</p>
+        </header>
+
+        <!-- 제어판 -->
+        <div class="control-panel">
+            <div class="location-section">
+                <button class="btn btn-primary" id="getCurrentLocation">
+                    📍 내 위치 찾기
+                </button>
+                <div class="location-info" id="locationInfo">
+                    위치를 선택해주세요
+                </div>
+            </div>
+
+            <div class="search-section">
+                <input type="text" id="searchInput" class="search-input" placeholder="병원명으로 검색...">
+                <select id="distanceFilter" class="filter-select">
+                    <option value="5">5km 이내</option>
+                    <option value="10">10km 이내</option>
+                    <option value="20">20km 이내</option>
+                    <option value="50">50km 이내</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="content-wrapper">
+            <!-- 지도 -->
+            <div class="map-section">
+                <div id="map" class="map"></div>
+            </div>
+
+            <!-- 병원 목록 -->
+            <div class="hospital-list-section">
+                <h2>근처 병원</h2>
+                <div id="hospitalList" class="hospital-list">
+                    <p class="empty-message">위치를 선택하면 병원 목록이 표시됩니다</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 통계 -->
+        <div class="stats-section">
+            <h2>병원 현황</h2>
+            <div class="stats-content">
+                <div class="stat-item">
+                    <div class="stat-label">총 병원 수</div>
+                    <div class="stat-value" id="totalHospitals">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">입원 가능</div>
+                    <div class="stat-value" id="availableHospitals">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">위치 기준</div>
+                    <div class="stat-value" id="nearbyCount">0</div>
+                </div>
+            </div>
+            <canvas id="hospitalChart" class="hospital-chart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="hospital.js"></script>
+</body>
+</html>
